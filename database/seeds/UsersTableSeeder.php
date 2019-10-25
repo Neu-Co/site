@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'TestingDriver',
+            'name' => 'driver',
             'email' => 'driver@neu-co.nc',
             'password' => bcrypt('test'),
             'created_at' => date("Y-m-d H:i:s"),
@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'driver' => '1'
         ]);
         DB::table('users')->insert([
-            'name' => 'TestingPassenger',
+            'name' => 'passenger',
             'email' => 'passenger@neu-co.nc',
             'password' => bcrypt('test'),
             'created_at' => date("Y-m-d H:i:s"),

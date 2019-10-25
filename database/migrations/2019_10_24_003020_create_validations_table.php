@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersCarsTable extends Migration
+class CreateValidationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateUsersCarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_cars', function (Blueprint $table) {
+        Schema::create('validations', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->unsignedBigInteger('driver_id');
-            $table->unsignedBigInteger('car_id');
-            $table->foreign('driver_id')->references('id')->on('users');
-            $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 
@@ -29,6 +26,6 @@ class CreateUsersCarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_cars');
+        Schema::dropIfExists('validations');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocumentsTable extends Migration
+class CreateCarsUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateDocumentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('documents', function (Blueprint $table) {
-            $table->bigIncrements('id')->unsigned()->unique();
+        Schema::create('cars_users', function (Blueprint $table) {
             $table->timestamps();
-            $table->string('file_path');
+            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('car_id');
+            $table->foreign('driver_id')->references('id')->on('users');
+            $table->foreign('car_id')->references('id')->on('cars');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateDocumentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('documents');
+        Schema::dropIfExists('cars_users');
     }
 }
