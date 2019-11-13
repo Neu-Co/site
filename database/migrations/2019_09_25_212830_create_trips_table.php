@@ -15,12 +15,18 @@ class CreateTripsTable extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned()->unique();
-            $table->timestamps();
-            $table->dateTimeTz('date');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('departure');
+            $table->unsignedBigInteger('arrival');
+            $table->dateTime('date');
+            $table->integer('price');
+            $table->integer('remaining_seats');
+            $table->unsignedBigInteger('driver_id');
             $table->unsignedBigInteger('car_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+            $table->foreign('driver_id')->references('id')->on('users');
             $table->foreign('car_id')->references('id')->on('cars');
+            $table->foreign('departure')->references('id')->on('places');
+            $table->foreign('arrival')->references('id')->on('places');
         });
     }
 

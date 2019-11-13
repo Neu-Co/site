@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'driver',
             'email' => 'driver@neu-co.nc',
+            'phone' => '101010',
             'password' => bcrypt('test'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),
@@ -22,6 +23,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'passenger',
             'email' => 'passenger@neu-co.nc',
+            'phone' => '420420',
             'password' => bcrypt('test'),
             'created_at' => date("Y-m-d H:i:s"),
             'updated_at' => date("Y-m-d H:i:s"),

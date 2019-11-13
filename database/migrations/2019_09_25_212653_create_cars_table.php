@@ -15,9 +15,10 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned()->unique();
-            $table->timestamps();
-            $table->string('chassis')->unique();
+            $table->string('immatriculation')->unique();
+            $table->string('model');
             $table->date('valid_until');
+            $table->timestamps();
         });
     }
 

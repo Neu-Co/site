@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Car extends Model
+class Profile extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'cars_users_xref';
+    protected $table = 'profiles';
 }

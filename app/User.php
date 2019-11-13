@@ -38,11 +38,32 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the cars owned by the user.
-     */
+    protected $with = [
+        'profile',
+    ];
+
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id');
+    }
+
     public function cars()
     {
-        return $this->belongsToMany('App\Car', 'users_cars', 'car_id', 'driver_id');
+        return $this->hasMany('App\Car', 'driver_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'driver_id');
+    }
+
+    public function tripsDriver()
+    {
+        return $this->hasMany('App\Trip', 'driver_id');
+    }
+
+    public function tripsPassenger()
+    {
+        return $this->hasMany('App\TripPassenger', 'passenger_id');
     }
 }

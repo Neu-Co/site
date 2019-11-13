@@ -15,7 +15,10 @@ class CreatePendingsTable extends Migration
     {
         Schema::create('pendings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('path');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

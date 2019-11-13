@@ -14,9 +14,9 @@ class CreateDocumentsTable extends Migration
     public function up()
     {
         Schema::create('documents', function (Blueprint $table) {
-            $table->string('folder');
-            $table->unsignedBigInteger('pending_id');
-            $table->foreign('pending_id')->references('id')->on('pendings');
+            $table->string('path');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
