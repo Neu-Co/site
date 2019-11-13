@@ -11,5 +11,5 @@ class Car extends Model
      *
      * @var string
      */
-    protected $table = 'cars_users_xref';
+    protected $table = 'cars';
 }

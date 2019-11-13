@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function cars()
     {
-        return $this->hasMany('App\Car', 'driver_id');
+        return $this->belongsToMany('App\Car', 'cars_users_xref', 'driver_id', 'car_id');
     }
 
     public function reviews()
@@ -64,6 +64,6 @@ class User extends Authenticatable
 
     public function tripsPassenger()
     {
-        return $this->hasMany('App\TripPassenger', 'passenger_id');
+        return $this->belongsToMany('App\Trip', 'trips_users_xref', 'passenger_id', 'trip_id');
     }
 }
