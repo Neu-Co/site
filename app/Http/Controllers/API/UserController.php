@@ -26,7 +26,7 @@ class UserController extends Controller
         }
     }
 /**
- * Register api
+ * register api
  *
  * @return \Illuminate\Http\Response
  */
@@ -56,6 +56,10 @@ class UserController extends Controller
     public function details()
     {
         $user = Auth::user();
-        return response()->json(['success' => $user], $this->successStatus);
+        $reviews = $user->reviews;
+        $cars = $user->cars;
+        $tripsDriver = $user->tripsDriver;
+        $tripsPassenger = $user->tripsPassenger;
+        return response()->json(['user' => $user], $this->successStatus);
     }
 }

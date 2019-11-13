@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateValidationsTable extends Migration
+class CreatePlacesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateValidationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('validations', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+        Schema::create('places', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned()->unique();
+            $table->string('place');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateValidationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('validations');
+        Schema::dropIfExists('places');
     }
 }

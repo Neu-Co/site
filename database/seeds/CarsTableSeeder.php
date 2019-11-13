@@ -12,11 +12,13 @@ class CarsTableSeeder extends Seeder
     public function run()
     {
         DB::table('cars')->insert([
-            'chassis' => 'VF1 2RFL1H 99078422',
+            'immatriculation' => '123456NC',
+            'model' => 'Citroën C3',
             'valid_until' => '2020-10-10',
         ]);
         DB::table('cars')->insert([
-            'chassis' => 'VF1 2RFL1H 99078423',
+            'immatriculation' => '420420NC',
+            'model' => '206',
             'valid_until' => '2018-10-10',
         ]);
     }
