@@ -17,6 +17,7 @@ class CreateTripsUsersXrefTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('trip_id');
             $table->unsignedBigInteger('passenger_id');
+            $table->boolean('status')->default(0);
             $table->foreign('trip_id')->references('id')->on('trips');
             $table->foreign('passenger_id')->references('id')->on('users');
         });

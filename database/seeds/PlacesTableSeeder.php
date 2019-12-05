@@ -20,5 +20,11 @@ class PlacesTableSeeder extends Seeder
         DB::table('places')->insert([
             'place' => 'Koné',
         ]);
+        DB::table('places')->insert([
+            'place' => 'Boulouparis',
+        ]);
+        DB::table('places')->insert([
+            'place' => 'La Foa',
+        ]);
     }
 }

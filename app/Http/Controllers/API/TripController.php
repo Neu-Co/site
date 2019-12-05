@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers\API;
 
-use App\Trip;
-use Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Trip;
+use Illuminate\Http\Request;
+use Validator;
 
 class TripController extends Controller
 {
@@ -18,7 +17,7 @@ class TripController extends Controller
      */
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->json()->all(), [
             'departure' => 'required',
             'arrival' => 'required',
             'date' => 'required',
@@ -30,8 +29,19 @@ class TripController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
-        $input = $request->all();
+        $input = $request->json()->all();
         $trip = Trip::create($input);
         return response()->json(['success' => $trip], $this->successStatus);
+    }
+
+    /**
+     * trip collection api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllTrips()
+    {
+        $trips = Trip::all();
+        return response()->json(['trips' => $trips], $this->successStatus);
     }
 }

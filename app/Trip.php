@@ -12,6 +12,6 @@ class Trip extends Model
      * @var string
      */
     protected $table = 'trips';
-    protected $fillable = ['departure', 'arrival', 'date', 'price', 'remaining_seats', 'driver_id', 'car_id'];
 
+    protected $fillable = ['departure', 'arrival', 'date', 'price', 'remaining_seats', 'driver_id', 'car_id'];
 }
