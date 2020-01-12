@@ -1,6 +1,6 @@
 # Pour l'installation (dans l'ordre) :
 ```
-- cp .env.sample .env
+- cp .env.example .env
 - php artisan key:generate
 - php artisan optimize
 - composer install
