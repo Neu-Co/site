@@ -16,9 +16,9 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('cigarette')->nullable();
-            $table->boolean('animals')->nullable();
-            $table->boolean('music')->nullable();
+            $table->boolean('cigarette')->default(0);
+            $table->boolean('animals')->default(0);
+            $table->boolean('music')->default(0);
             $table->integer('total_passengers')->default(0);
             $table->integer('total_trips')->default(0);
             $table->foreign('user_id')->references('id')->on('users');
