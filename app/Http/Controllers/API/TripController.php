@@ -6,7 +6,6 @@ use App\Trip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class TripController extends Controller
@@ -42,7 +41,7 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function findTrips()
+    public function findTrips(Request $request)
     {
         $departure = $request->json('departure');
         $arrival = $request->json('arrival');

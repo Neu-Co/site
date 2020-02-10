@@ -21,7 +21,8 @@ Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('details', 'API\UserController@details');
+    Route::post('user/my-profile', 'API\UserController@myProfile');
+    Route::post('user/{id}', 'API\UserController@userProfile');
 
     Route::post('trip/create', 'API\TripController@create');
     Route::post('trip/list', 'API\TripController@findTrips');
