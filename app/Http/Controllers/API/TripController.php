@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Trip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class TripController extends Controller
      */
     public function create(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($request->json()->all(), [
             'departure' => 'required',
             'arrival' => 'required',
             'date' => 'required',
@@ -31,7 +32,7 @@ class TripController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
-        $input = $request->all();
+        $input = $request->json()->all();
         $trip = Trip::create($input);
         return response()->json(['success' => $trip], $this->successStatus);
     }
