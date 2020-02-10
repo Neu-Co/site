@@ -19,7 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('login', 'API\UserController@login');
 Route::post('register', 'API\UserController@register');
-Route::group(['middleware' => 'auth:api'], function() {
-    Route::post('trip', 'API\TripController@create');
+
+Route::group(['middleware' => 'auth:api'], function () {
     Route::post('details', 'API\UserController@details');
+
+    Route::post('trip/create', 'API\TripController@create');
+    Route::post('trip/list', 'API\TripController@findTrips');
+
+    Route::post('place/create', 'API\PlaceController@create');
+    Route::post('place/list', 'API\PlaceController@getAllPlaces');
 });
