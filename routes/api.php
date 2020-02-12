@@ -25,8 +25,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('user/{id}', 'API\UserController@userProfile');
 
     Route::post('trip/create', 'API\TripController@create');
-    Route::post('trip/list', 'API\TripController@findTrips');
+    Route::post('trip/list', 'API\TripController@find');
+    Route::post('trip/{id}', 'API\TripController@show');
 
     Route::post('place/create', 'API\PlaceController@create');
-    Route::post('place/list', 'API\PlaceController@getAllPlaces');
+    Route::post('place/list', 'API\PlaceController@showAll');
 });

@@ -65,6 +65,7 @@ class UserController extends Controller
         $cars = $user->cars;
         $tripsDriver = $user->tripsDriver;
         $tripsPassenger = $user->tripsPassenger;
+        
         return response()->json(['user' => $user], $this->successStatus);
     }
 
@@ -92,8 +93,6 @@ class UserController extends Controller
         ->where('reviews.driver_id', '=', $id)
         ->join('users', 'reviews.author_id', '=', 'users.id')
         ->select('reviews.stars', 'reviews.body', 'reviews.created_at', 'users.name as author_name');
-
-        
         
         return response()->json(['user' => $user->get(), 'profile' => $profile->get(), 'cars' => $cars->get(), 'reviews' => $reviews->get()], $this->successStatus);
     }
