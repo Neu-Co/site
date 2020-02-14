@@ -33,7 +33,7 @@ class PlaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllPlaces()
+    public function showAll()
     {
         $places = Place::all();
         return response()->json(['places' => $places], $this->successStatus);

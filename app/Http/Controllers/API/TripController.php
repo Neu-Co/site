@@ -41,7 +41,7 @@ class TripController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function findTrips(Request $request)
+    public function find(Request $request)
     {
         $departure = $request->json('departure');
         $arrival = $request->json('arrival');
@@ -63,12 +63,33 @@ class TripController extends Controller
             $trips->whereTime('date', $time);
         }
 
-        $trips->join('users', 'users.id', '=', 'trips.driver_id')
+        $trips/*->join('users', 'users.id', '=', 'trips.driver_id')*/
         ->join('places as d', 'd.id', '=', 'trips.departure')
         ->join('places as a', 'a.id', '=', 'trips.arrival')
-        ->select('trips.*', 'users.name as driver_name', 'd.place as departure_name', 'a.place as arrival_name');
+        ->join('cars_users_xref', 'cars_users_xref.car_id', '=', 'trips.driver_id')
+        ->join('cars', 'cars.id', '=', 'cars_users_xref.car_id')
+        ->select('trips.id', 'trips.date', /*'users.name as driver_name',*/ 'cars.model as car_model', 'd.place as departure_name', 'a.place as arrival_name');
 
         return response()->json(['trips' => $trips->get()], $this->successStatus);
+    }
+
+    /**
+     * Show a trip
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $trip = DB::table('trips')
+        ->where('trips.id', '=', $id)
+        ->join('users', 'users.id', '=', 'trips.driver_id')
+        ->join('places as d', 'd.id', '=', 'trips.departure')
+        ->join('places as a', 'a.id', '=', 'trips.arrival')
+        ->join('cars_users_xref', 'cars_users_xref.car_id', '=', 'trips.driver_id')
+        ->join('cars', 'cars.id', '=', 'cars_users_xref.car_id')
+        ->select('trips.date', 'trips.price', 'trips.remaining_seats', 'users.name as driver_name', 'cars.model as car_model', 'd.place as departure_name', 'a.place as arrival_name');
+        
+        return response()->json(['trips' => $trip->get()], $this->successStatus);
     }
 
 }
